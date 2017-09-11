@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TECH TRIVIA</title>
+	<link rel="stylesheet" type="text/css" href="trivia.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+</head>
+<body>
+<center>
+	
+<div id="container">
+
+	<h1>TRIVIA</h1>
+
+	<div id="wordarea"> Let's Play </div>
+	
+	<br><br>
+
+<div id="radio">
+	
+	<input class="w3-radio" id="a" type="radio" name="answer" value="">
+	<label></label>
+
+	<input class="w3-radio" id="b" type="radio" name="answer" value="">
+	<label></label>
+
+	<input class="w3-radio" id="c" type="radio" name="answer" value="">
+	<label></label>
+
+	<input class="w3-radio" id="d" type="radio" name="answer" value="">
+	<label></label>
+	<br><br>
+
+</div>
+
+	<input type="text" name="guess" id="guess">
+
+	<br><br>
+
+	<button id="button">Start</button>
+
+<script type="text/javascript">
+
+$("#radio").hide(); //hide radio container until start
+$("#guess").hide(); //hide input box until start
+
+var trivia = [ 
+
+	{
+		question: "q 0",
+		answer: "a 0",
+		correct: "Correct, cat is cat.",
+		incorrect: "Incorrect, that is not a cat"
+	},
+
+	{
+		question: "q 1",
+		a: "a",
+		b: "b",
+		c: "c",
+		d: "d",
+		correct: "Correct, Ben's name is Ben.",
+		incorrect: "Incorrect, Ben's name is Ben."
+	},
+
+	{
+		question: "q 2",
+		answer: "a 2",
+		correct: "Correct, Ben's name is Ben.",
+		incorrect: "Incorrect, Ben's name is Ben."
+	},
+
+	{
+		question: "q 3",
+		answer: "a 3",
+		correct: "Correct, Ben's name is Ben.",
+		incorrect: "Incorrect, Ben's name is Ben."
+	},
+
+	{
+		question: "q 4",
+		answer: "a 4",
+		correct: "Correct, Ben's name is Ben.",
+		incorrect: "Incorrect, Ben's name is Ben."
+	},
+
+	{
+		question: "q 5",
+		answer: "a 5",
+		correct: "Correct, Ben's name is Ben.",
+		incorrect: "Incorrect, Ben's name is Ben."
+	},
+
+	{
+		question: "q 6",
+		answer: "a 6",
+		correct: "Correct, Ben's name is Ben.",
+		incorrect: "Incorrect, Ben's name is Ben."
+	},
+
+	{
+		question: "q 7",
+		//"7. Fonts that contain small decorative lines at the end of a stroke are known as what?",
+		answer: "a 7", //"Serif fonts",
+		correct: "Correct, Ben's name is Ben.",
+		incorrect: "Incorrect, Ben's name is Ben."
+	},
+
+	{
+		question: "q 8",
+		//"8. CERN launched the world's very first website in what year?",
+		answer: "a 8",
+		//"1990",
+		correct: "Correct, Ben's name is Ben.",
+		incorrect: "Incorrect, Ben's name is Ben."
+	},
+
+	{
+		question: "q 9",
+		//"9. CERN launched the world's very first website in what year?",
+		answer: "a 9",
+		correct: "Correct, Ben's name is Ben.",
+		incorrect: "Incorrect, Ben's name is Ben."
+	},
+
+	{
+		question: "q 10",
+		answer: "a 10",
+		correct: "Correct, Ben's name is Ben.",
+		incorrect: "Incorrect, Ben's name is Ben."
+
+	},
+	{
+		question: " this will be where the score goes",
+		answer: "answers will go here",
+		correct: "Correct, Ben's name is Ben.",
+		incorrect: "Incorrect, Ben's name is Ben."
+
+	},
+]; //end trivia object
+
+
+var clickCounter = 0; // sets initial click count to zero.
+
+
+$("#button").on("click", function () { 
+
+	$("#button").html("Guess"); //a
+
+	$("#guess").show(); //b
+
+	$("#wordarea").html(trivia[clickCounter].question); //c
+
+	var answer = trivia[clickCounter].answer; //d
+
+	var guess = $("#guess").val(); //e
+
+	console.log("answer: " + answer + " , guess: " + guess); //f
+
+	if (answer == guess) {alert("correct")}; //g
+
+	clickCounter ++; //h
+
+}); /* second click to infinity :
+
+ 	a. "start" button to "guess"; b. shows input box; c. gets trivia question; d. stores matching answer; e. stores user guess; f. compares guess to answer; g. alerts result; h. adds to click counter; 
+
+	*/
+
+if (clickCounter < 1){ 
+
+	$("#button").on("click", function () { 
+
+		$("#button").html("Guess"); //a
+
+		$("#guess").show(); //b
+
+		$("#wordarea").html(trivia[clickCounter].question); //c
+
+	}); 
+}; /* for trivia[0] start click only:
+
+	a. Change "Start" to "Guess"; b. shows input box; c. gets trivia question;
+	*game begins*
+   */
+
+
+/* PROBLEMS: starts alerting properly at q. 2 
+   radio box exists but is hidden for now
+*/
+
+</script>
+
+</div>
+
+</body>
+</html>

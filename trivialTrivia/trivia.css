@@ -1,0 +1,24 @@
+body {
+	background-color: lightpink;
+	font-family: 'Permanent Marker', cursive;
+
+}
+
+#button {
+
+	background-color: #4CAF50;
+	border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+}
+
+#guess {
+	height: 30px;
+	width: 200px;
+	font-size: 16pt;
+}

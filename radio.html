@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>radio</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+	
+	<div id="radio">
+
+	<input class="w3-radio" id="a" type="radio" name="male" value="male">
+	<label id="m"></label>
+
+	<br>
+
+	<input class="w3-radio" id="b" type="radio" name="female" value="female">
+	<label id="f"></label>
+
+	</div>	
+
+	<br><br>
+
+
+	<div id="result">
+		things
+	</div>
+	
+	<br><br>
+
+	<button id="button">submit</button>
+
+
+<script type="text/javascript">
+
+var person = [
+	{
+		name: "Male",
+		gender: "male",
+		age: "29"
+	},
+
+	{
+		name: "Female",
+		gender: "female",
+		age: "26"
+	}
+
+];
+
+	$("#m").html(person[0].name);
+	$("#f").html(person[1].name);
+
+
+	$("#button").on("click", function() {
+
+		var result = $('input[type="radio"]:checked');
+		$("#result").html(result.val() + " is checked.");
+
+	});
+
+	
+
+</script>
+
+</body>
+</html>

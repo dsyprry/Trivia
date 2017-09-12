@@ -1,16 +1,12 @@
 body {
-	background-color: #fcfba9;
+	background-color: lightpink;
 	font-family: 'Permanent Marker', cursive;
 
 }
 
-h1 {
-	color: #bb43a3;
-}
-
 #button {
 
-	background-color: #f44546;
+	background-color: #4CAF50;
 	border: none;
     color: black;
     padding: 10px 20px;
@@ -18,7 +14,7 @@ h1 {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-	font-family: 'Permanent Marker', cursive;
+
 }
 
 #guess {

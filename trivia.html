@@ -20,19 +20,21 @@
 <div id="radio">
 	
 	<input class="w3-radio" id="a" type="radio" name="answer" value="">
-	<label id="label-a"></label>
+	<label></label>
 
 	<input class="w3-radio" id="b" type="radio" name="answer" value="">
-	<label id="label-b"></label>
+	<label></label>
 
 	<input class="w3-radio" id="c" type="radio" name="answer" value="">
-	<label id="label-c"></label>
+	<label></label>
 
 	<input class="w3-radio" id="d" type="radio" name="answer" value="">
-	<label id="label-d"></label>
+	<label></label>
 	<br><br>
 
 </div>
+
+	<input type="text" name="guess" id="guess">
 
 	<br><br>
 
@@ -41,48 +43,42 @@
 <script type="text/javascript">
 
 $("#radio").hide(); //hide radio container until start
+$("#guess").hide(); //hide input box until start
 
 var trivia = [ 
 
 	{
-		question: "Which option is a female?",
+		question: "q 0",
 		a: "a. sporty spice",
 		b: "b. banana split",
 		c: "c. verde sauce",
 		d: "d. mike jones",
-		answer: "a. sporty spice",
 		correct: "Correct, cat is cat.",
 		incorrect: "Incorrect, that is not a cat"
 	},
 
 	{
 		question: "q 1",
-		a: "a. pam spice",
-		b: "b. greg hamilton",
-		c: "c. jumanji",
-		d: "d. archaeology",
-		answer: "a. pam spice",
+		a: "a. sporty spice",
+		b: "b. banana split",
+		c: "c. verde sauce",
+		d: "d. mike jones",
 		correct: "Correct, Ben's name is Ben.",
 		incorrect: "Incorrect, Ben's name is Ben."
 	},
 
 	{
-		question: "which option is a person?",
+		question: "q 2",
 		a: "a. sporty spice",
 		b: "b. banana split",
 		c: "c. verde sauce",
 		d: "d. mike jones",
-		answer: "a. bushy spice",
 		correct: "Correct, Ben's name is Ben.",
 		incorrect: "Incorrect, Ben's name is Ben."
 	},
 
 	{
 		question: "q 3",
-		a: "a. pam spice",
-		b: "b. greg hamilton",
-		c: "c. jumanji",
-		d: "d. archaeology",
 		answer: "a 3",
 		correct: "Correct, Ben's name is Ben.",
 		incorrect: "Incorrect, Ben's name is Ben."
@@ -90,10 +86,6 @@ var trivia = [
 
 	{
 		question: "q 4",
-		a: "a. pam spice",
-		b: "b. greg hamilton",
-		c: "c. jumanji",
-		d: "d. archaeology",
 		answer: "a 4",
 		correct: "Correct, Ben's name is Ben.",
 		incorrect: "Incorrect, Ben's name is Ben."
@@ -101,10 +93,6 @@ var trivia = [
 
 	{
 		question: "q 5",
-		a: "a. pam spice",
-		b: "b. greg hamilton",
-		c: "c. jumanji",
-		d: "d. archaeology",
 		answer: "a 5",
 		correct: "Correct, Ben's name is Ben.",
 		incorrect: "Incorrect, Ben's name is Ben."
@@ -112,10 +100,6 @@ var trivia = [
 
 	{
 		question: "q 6",
-		a: "a. pam spice",
-		b: "b. greg hamilton",
-		c: "c. jumanji",
-		d: "d. archaeology",
 		answer: "a 6",
 		correct: "Correct, Ben's name is Ben.",
 		incorrect: "Incorrect, Ben's name is Ben."
@@ -123,10 +107,6 @@ var trivia = [
 
 	{
 		question: "q 7",
-		a: "a. pam spice",
-		b: "b. greg hamilton",
-		c: "c. jumanji",
-		d: "d. archaeology",
 		//"7. Fonts that contain small decorative lines at the end of a stroke are known as what?",
 		answer: "a 7", //"Serif fonts",
 		correct: "Correct, Ben's name is Ben.",
@@ -135,10 +115,6 @@ var trivia = [
 
 	{
 		question: "q 8",
-		a: "a. pam spice",
-		b: "b. greg hamilton",
-		c: "c. jumanji",
-		d: "d. archaeology",
 		//"8. CERN launched the world's very first website in what year?",
 		answer: "a 8",
 		//"1990",
@@ -148,10 +124,6 @@ var trivia = [
 
 	{
 		question: "q 9",
-		a: "a. pam spice",
-		b: "b. greg hamilton",
-		c: "c. jumanji",
-		d: "d. archaeology",
 		//"9. CERN launched the world's very first website in what year?",
 		answer: "a 9",
 		correct: "Correct, Ben's name is Ben.",
@@ -160,10 +132,6 @@ var trivia = [
 
 	{
 		question: "q 10",
-		a: "a. pam spice",
-		b: "b. greg hamilton",
-		c: "c. jumanji",
-		d: "d. archaeology",
 		answer: "a 10",
 		correct: "Correct, Ben's name is Ben.",
 		incorrect: "Incorrect, Ben's name is Ben."
@@ -171,10 +139,6 @@ var trivia = [
 	},
 	{
 		question: " this will be where the score goes",
-		a: "a. pam spice",
-		b: "b. greg hamilton",
-		c: "c. jumanji",
-		d: "d. archaeology",
 		answer: "answers will go here",
 		correct: "Correct, Ben's name is Ben.",
 		incorrect: "Incorrect, Ben's name is Ben."
@@ -184,85 +148,64 @@ var trivia = [
 
 
 var clickCounter = 0; // sets initial click count to zero.
-var answer = trivia[clickCounter].answer;
-var result = $('input[type="radio"]:checked').val();
-var score = 0;
-var a = trivia[clickCounter].a;
-var b = trivia[clickCounter].b;
-var c = trivia[clickCounter].c;
-var d = trivia[clickCounter].d;
-
-//works
-$("#a").val(a);
-$("#b").val(b);
-$("#c").val(c);
-$("#d").val(d);
 
 
-if (clickCounter < 1){ 
 
-	$("#button").on("click", function () { 
 
-		$("#button").html("Guess"); //a
 
-		$("#guess").hide(); //b
 
-		$("#radio").show();
 
-		$("#wordarea").html(trivia[clickCounter].question); //c
 
-	}); 
-}; /* for trivia[0] start click only:
 
-	a. Change "Start" to "Guess"; b. shows radio buttons; c. gets trivia question;
-	*game begins*
-   */
+
+
+
+
 
 
 
 $("#button").on("click", function () { 
 
-
-
 	$("#button").html("Guess"); //a
 
-	$("#radio").show();
+	$("#guess").show(); //b
 
-	$("#wordarea").html(trivia[clickCounter].question); //c works
+	$("#wordarea").html(trivia[clickCounter].question); //c
 
-	//works
-	
-	//works
+	console.log(trivia[clickCounter].a)
+
 	// var a = trivia[clickCounter].a;
-	// var b = trivia[clickCounter].b;
-	// var c = trivia[clickCounter].c;
-	// var d = trivia[clickCounter].d;
+	// // b = $("#b");
+	// // c = $("#c");
+	// // d = $("#d");
 
-	// //works
-	// $("#a").val(a);
-	// $("#b").val(b);
-	// $("#c").val(c);
-	// $("#d").val(d);
+	// $("#a").val(trivia[clickCounter].a);
 
-	// var answer = trivia[clickCounter].answer;
-	var result = $('input[type="radio"]:checked').val();
-	// var score = 0;
-	console.log("answer: " + answer + " result: " + result);
-	console.log(answer);
 
-	$("#label-a").html(a); 
-	$("#label-b").html(b);
-	$("#label-c").html(c);
-	$("#label-d").html(d);
 
-	
-	if (result == answer) {alert("Correct");} else { alert("Incorrect");}
-	//works
-	
-		
-	clickCounter ++;
 
-	
+
+
+
+	var answer = trivia[clickCounter].answer; //d
+
+	// var guess = $("#guess").val(); //e
+
+	// console.log("answer: " + answer + " , guess: " + guess); //f
+
+
+
+
+
+
+
+
+
+
+
+	if (answer == guess) {alert("correct")}; //g
+
+	clickCounter ++; //h
 
 }); /* second click to infinity :
 
@@ -270,10 +213,26 @@ $("#button").on("click", function () {
 
 	*/
 
+if (clickCounter < 1){ 
+
+	$("#button").on("click", function () { 
+
+		$("#button").html("Guess"); //a
+
+		$("#guess").show(); //b
+
+		$("#wordarea").html(trivia[clickCounter].question); //c
+
+	}); 
+}; /* for trivia[0] start click only:
+
+	a. Change "Start" to "Guess"; b. shows input box; c. gets trivia question;
+	*game begins*
+   */
 
 
-/* PROBLEMS:  
-   if else statement to compare guess and answer
+/* PROBLEMS: starts alerting properly at q. 2 
+   radio box exists but is hidden for now
 */
 
 </script>

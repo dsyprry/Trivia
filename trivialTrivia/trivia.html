@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="trivia.css">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Oswald|Slabo+27px" rel="stylesheet">
 </head>
 <body>
 <center>
@@ -36,34 +37,44 @@
 
 	<br><br>
 
-	<button id="button">Start</button>
+	<button id="start">Start</button>
+
+	<button class="b" id="guess">Guess</button>
+
+	<button class="b" id="next">Next</button>
 
 <script type="text/javascript">
 
 $("#radio").hide(); //hide radio container until start
 
+$("#guess").hide();
+
+$("#next").hide();
+
+
 var trivia = [ 
 
 	{
-		question: "Which option is a female?",
-		a: "a. sporty spice",
-		b: "b. banana split",
-		c: "c. verde sauce",
-		d: "d. mike jones",
-		answer: "a. sporty spice",
-		correct: "Correct, cat is cat.",
-		incorrect: "Incorrect, that is not a cat"
+		question:
+		"What do the letters HTML, a markup language used to create web pages, stand for?",
+		a: "A. Hyphenated Tech Marker Language",
+		b: "B. Hidden Theme Matrix Linguistics",
+		c: "C. Hyper Text Mark-up Language",	
+		d: "D. Hotmail Text Materials Lab",
+		answer: "C. Hyper Text Mark-up Language",
+		correct: "Correct, HTML stands for 'Hyper Text Mark-up Language'.",
+		incorrect: "Incorrect, HTML stands for 'Hyper Text Mark-up Language'."
 	},
 
 	{
-		question: "q 1",
-		a: "a. pam spice",
-		b: "b. greg hamilton",
-		c: "c. jumanji",
-		d: "d. archaeology",
-		answer: "a. pam spice",
-		correct: "Correct, Ben's name is Ben.",
-		incorrect: "Incorrect, Ben's name is Ben."
+		question: "Who was the legendary Benedictine monk who invented champagne??",
+		a: "A. Graphic Unit Index",
+		b: "B. General User Interphase",
+		c: "C. Dom Perignon",
+		d: "D. Graphical User Interface",
+		answer: "D. Graphical User Interface",
+		correct: "Correct, GUI stands for Graphical User Interface",
+		incorrect: "Incorrect, GUI stands for Graphical User Interface."
 	},
 
 	{
@@ -72,8 +83,8 @@ var trivia = [
 		b: "b. banana split",
 		c: "c. verde sauce",
 		d: "d. mike jones",
-		answer: "a. bushy spice",
-		correct: "Correct, Ben's name is Ben.",
+		answer: "a. sporty spice",
+		correct: "Correct, sporty spice is a person.",
 		incorrect: "Incorrect, Ben's name is Ben."
 	},
 
@@ -182,99 +193,84 @@ var trivia = [
 	},
 ]; //end trivia object
 
+var clickCounter = 0; // sets initial click count to zero
 
-var clickCounter = 0; // sets initial click count to zero.
-var answer = trivia[clickCounter].answer;
-var result = $('input[type="radio"]:checked').val();
+var arrayId = 0;
+
 var score = 0;
-var a = trivia[clickCounter].a;
-var b = trivia[clickCounter].b;
-var c = trivia[clickCounter].c;
-var d = trivia[clickCounter].d;
-
-//works
-$("#a").val(a);
-$("#b").val(b);
-$("#c").val(c);
-$("#d").val(d);
 
 
-if (clickCounter < 1){ 
+$("#start").on("click", function() {
 
-	$("#button").on("click", function () { 
-
-		$("#button").html("Guess"); //a
-
-		$("#guess").hide(); //b
-
-		$("#radio").show();
-
-		$("#wordarea").html(trivia[clickCounter].question); //c
-
-	}); 
-}; /* for trivia[0] start click only:
-
-	a. Change "Start" to "Guess"; b. shows radio buttons; c. gets trivia question;
-	*game begins*
-   */
-
-
-
-$("#button").on("click", function () { 
-
-
-
-	$("#button").html("Guess"); //a
-
+	$("#start").hide();
+	$("#guess").show();
 	$("#radio").show();
 
-	$("#wordarea").html(trivia[clickCounter].question); //c works
-
-	//works
-	
-	//works
-	// var a = trivia[clickCounter].a;
-	// var b = trivia[clickCounter].b;
-	// var c = trivia[clickCounter].c;
-	// var d = trivia[clickCounter].d;
-
-	// //works
-	// $("#a").val(a);
-	// $("#b").val(b);
-	// $("#c").val(c);
-	// $("#d").val(d);
-
-	// var answer = trivia[clickCounter].answer;
-	var result = $('input[type="radio"]:checked').val();
-	// var score = 0;
-	console.log("answer: " + answer + " result: " + result);
-	console.log(answer);
-
+	$("#wordarea").html(trivia[clickCounter].question);
+	var a = trivia[clickCounter].a;
+	var b = trivia[clickCounter].b;
+	var c = trivia[clickCounter].c;
+	var d = trivia[clickCounter].d;
+	$("#a").val(a);
+	$("#b").val(b);
+	$("#c").val(c);
+	$("#d").val(d);
 	$("#label-a").html(a); 
 	$("#label-b").html(b);
 	$("#label-c").html(c);
 	$("#label-d").html(d);
 
-	
-	if (result == answer) {alert("Correct");} else { alert("Incorrect");}
-	//works
-	
-		
-	clickCounter ++;
+	if ('input[type="radio"]:checked') {
 
-	
+		$("#guess").on("click", function() {
 
-}); /* second click to infinity :
+			result = $('input[type="radio"]:checked').val();
+	 		var answer = trivia[clickCounter].answer;
+	 		var correct = trivia[clickCounter].correct;
+	 		var incorrect = trivia[clickCounter].incorrect;
 
- 	a. "start" button to "guess"; b. shows input box; c. gets trivia question; d. stores matching answer; e. stores user guess; f. compares guess to answer; g. alerts result; h. adds to click counter; 
+	 		if (answer == result) {
+	 			score ++;
+	 			alert(trivia[clickCounter].correct + "\n\n\nScore: " + score);
+	 		} else {
+	 			alert(trivia[clickCounter].incorrect);
+	 		}
 
-	*/
+			console.log(
+			"answer : " + answer + 
+			", result: " + result + 
+			" , correct answer: " + 
+			trivia[clickCounter].correct + 
+			score
+			); //end console
 
+			clickCounter ++
 
+			$("#guess").hide();
+			$("#next").show();
+		})
+	}
+	$("#next").on("click", function() {
+		$("#wordarea").html(trivia[clickCounter].question);
+		var a = trivia[clickCounter].a;
+		var b = trivia[clickCounter].b;
+		var c = trivia[clickCounter].c;
+		var d = trivia[clickCounter].d;
+		$("#a").val(a);
+		$("#b").val(b);
+		$("#c").val(c);
+		$("#d").val(d);
+		$("#label-a").html(a); 
+		$("#label-b").html(b);
+		$("#label-c").html(c);
+		$("#label-d").html(d);
 
-/* PROBLEMS:  
-   if else statement to compare guess and answer
-*/
+		if ('input[type="radio"]:checked') {
+			$("#guess").show();
+			$("#next").hide();
+		}
+	})
+});
 
 </script>
 

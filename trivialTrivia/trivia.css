@@ -1,14 +1,17 @@
 body {
 	background-color: #fcfba9;
-	font-family: 'Permanent Marker', cursive;
+	font-family: 'Oswald', sans-serif;
+	font-size: 16pt;
 
 }
 
 h1 {
 	color: #bb43a3;
+	font-family: 'Permanent Marker', cursive;
+	margin-bottom: 5%;
 }
 
-#button {
+#start, #next {
 
 	background-color: #f44546;
 	border: none;
@@ -22,7 +25,14 @@ h1 {
 }
 
 #guess {
-	height: 30px;
-	width: 200px;
-	font-size: 16pt;
+
+	background-color: #02dba5;
+	border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+	font-family: 'Permanent Marker', cursive;
 }
